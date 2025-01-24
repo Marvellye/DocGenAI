@@ -1,7 +1,8 @@
 ```
 ```vue
 <template>
-  <nav class="bg-black/50 px-8 py-4 max-w-6xl mx-auto rounded-full">
+	<div class=" top-0 left-0 right-0 z-50 px-4 py-6">
+    <nav class="bg-black/50 px-8 py-4 max-w-6xl mx-auto rounded-full">
     <div class="flex justify-between items-center">
       <a href="#" class="text-xl font-bold text-white">
         DocGen<span class="text-green-400 bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">AI</span>
@@ -16,6 +17,7 @@
       </div>
     </div>
   </nav>
+	</div>
 </template>
 ```
 ```html
