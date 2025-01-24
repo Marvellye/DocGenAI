@@ -20,7 +20,7 @@ const handleDocumentGenerated = (url: string) => {
   <div class="min-h-screen bg-gradient-to-br from-black via-green-950 to-black text-white">
     <Navbar />
 
-    <div class="container mx-auto px-4 py-12 pt-32">
+    <div class="container mx-auto px-4 py-12 pt-20">
       <header class="text-center mb-16">
         <h1 class="text-4xl md:text-6xl font-bold mb-4">Your Free AI <span class="text-green-400">PDF/PPTX</span> <br/> Generator is Here!</h1>
         <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
