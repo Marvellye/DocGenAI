@@ -47,29 +47,34 @@ const handleEmailSubmit = async () => {
   if (!email.value) return;
 
   emailLoading.value = true;
-  try {
-    const response = await fetch(
-      `https://api.marvelly.com.ng/v1/news-letter?service=DocGenAI&email=${encodeURIComponent(email.value)}`,
-      { method: 'POST' }
-    )
-    if (!response.ok) {
-      const errorData = await response.json();
-      const errorMessage = errorData.message || `HTTP error! status: ${response.status}`;
-      throw new Error(errorMessage);
-    }
-    const data = await response.json();
-    if (data.status === 'success') {
-      alert('Subscribed successfully!')
-      email.value = '';
-    } else {
-      throw new Error('Subscription failed');
-    }
-  } catch (error) {
-    console.error('Error subscribing:', error)
-    alert(`Failed to subscribe: ${error}`)
-  } finally {
-    emailLoading.value = false;
+	
+try {
+  const response = await fetch(
+    `https://api.marvelly.com.ng/v1/news-letter?service=DocGenAI&email=${encodeURIComponent(email.value)}`
+  );
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    const errorMessage = errorData.message || `HTTP error! Status: ${response.status}`;
+    throw new Error(errorMessage);
   }
+
+  const data = await response.json();
+
+  if (data.success === 'true') {
+    alert('Subscribed successfully!');
+    email.value = '';
+  } else {
+    throw new Error(data.error || 'Subscription failed');
+  }
+} catch (error) {
+  console.error('Error subscribing:', error.message);
+  
+  // Handle error response properly
+  alert(`Failed to subscribe: ${error.message || 'Unknown error occurred'}`);
+} finally {
+  emailLoading.value = false;
+}
 }
 </script>
 
