@@ -55,8 +55,7 @@ try {
 
   if (!response.ok) {
     const errorData = await response.json();
-    const errorMessage = errorData.message || `HTTP error! Status: ${response.status}`;
-    throw new Error(errorMessage);
+    throw new Error(errorData.message || `HTTP error! Status: ${response.status}`);
   }
 
   const data = await response.json();
@@ -68,13 +67,17 @@ try {
     throw new Error(data.error || 'Subscription failed');
   }
 } catch (error) {
-  console.error('Error subscribing:', error.message);
-  
-  // Handle error response properly
-  alert(`Failed to subscribe: ${error.message || 'Unknown error occurred'}`);
+  if (error instanceof Error) {
+    console.error('Error subscribing:', error.message);
+    alert(`Failed to subscribe: ${error.message}`);
+  } else {
+    console.error('Unknown error:', error);
+    alert('Failed to subscribe due to an unknown error');
+  }
 } finally {
   emailLoading.value = false;
 }
+
 }
 </script>
 
