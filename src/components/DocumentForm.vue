@@ -21,7 +21,7 @@ const handleSubmit = async () => {
 
     if (medium === 'pdfv2') {
       medium = 'pdf';
-      userText += 'V_2?v=2';
+      userText += 'V_2&v=2';
     }
 
     const response = await fetch(
